@@ -1,0 +1,91 @@
+{
+  "archive_run_date_utc": "2026-07-13",
+  "generated_by": "archive_ghgrp.py",
+  "purpose": "Preservation snapshot of EPA GHGRP public data, captured in case future reporting requirements are rescinded or historical data is altered/removed.",
+  "files": [
+    {
+      "group": "summary",
+      "name": "data_summary_spreadsheets_2023.zip",
+      "source_url": "https://www.epa.gov/system/files/other-files/2024-10/2023_data_summary_spreadsheets.zip",
+      "description": "Multi-year data summary spreadsheet with high-level facility info, plus yearly spreadsheets with emissions by GHG and process. This is the single most useful file for a general archive -- start here if you only grab one thing.",
+      "retrieved_at_utc": "2026-07-13T16:21:38.630249+00:00",
+      "http_status": 200,
+      "bytes": 28389973,
+      "sha256": "895349c8008b7962dba68659c8187cec6b340d68be84ccb3f0e7fb6037bf8345",
+      "success": true,
+      "error": null
+    },
+    {
+      "group": "parent_company",
+      "name": "ghgp_data_parent_company.xlsb",
+      "source_url": "https://www.epa.gov/system/files/other-files/2024-10/ghgp_data_parent_company.xlsb",
+      "description": "Each reporting facility's highest-level U.S. parent company and percent ownership. Useful for corporate-accountability angles (which parent companies operate the highest emitters).",
+      "retrieved_at_utc": "2026-07-13T16:21:39.864304+00:00",
+      "http_status": 200,
+      "bytes": 7984329,
+      "sha256": "5613dd8454b08deb160e3f1dec18c1a9b45464bc0ef8453c97989ea0d4fdbce2",
+      "success": true,
+      "error": null
+    },
+    {
+      "group": "unit_fuel",
+      "name": "emissions_by_unit_and_fuel_type_c_d_aa.zip",
+      "source_url": "https://www.epa.gov/system/files/other-files/2024-10/emissions_by_unit_and_fuel_type_c_d_aa.zip",
+      "description": "Unit-level and fuel-level emissions for Pulp & Paper (Subpart AA), Electricity Generation (Subpart D), and General Stationary Fuel Combustion (Subpart C).",
+      "retrieved_at_utc": "2026-07-13T16:21:40.665031+00:00",
+      "http_status": 200,
+      "bytes": 11303638,
+      "sha256": "8aaa1caebca82f270a9f078176b9d814bb8c02021fd53addfed3d17074091bc8",
+      "success": true,
+      "error": null
+    },
+    {
+      "group": "power_plant_crosswalk",
+      "name": "ghgrp_oris_power_plant_crosswalk.xlsx",
+      "source_url": "https://www.epa.gov/system/files/documents/2022-04/ghgrp_oris_power_plant_crosswalk_12_13_21.xlsx",
+      "description": "Crosswalk between GHGRP Facility IDs and EIA/ORIS IDs -- lets you join GHGRP data to EIA power plant generation data for cross-referencing.",
+      "retrieved_at_utc": "2026-07-13T16:21:41.477477+00:00",
+      "http_status": 200,
+      "bytes": 272305,
+      "sha256": "f4ec8ff08d3d964f8531a011705dde1b228266d39c3f73dec1062c64adf4526d",
+      "success": true,
+      "error": null
+    },
+    {
+      "group": "subpart_l_o",
+      "name": "l_o_freq_request_data.xlsx",
+      "source_url": "https://www.epa.gov/system/files/other-files/2024-10/l_o_freq_request_data.xlsx",
+      "description": "Subpart L (Fluorinated Gas Production) and Subpart O (HCFC-22 Production / HFC-23 Destruction), all reporting years.",
+      "retrieved_at_utc": "2026-07-13T16:21:41.989465+00:00",
+      "http_status": 200,
+      "bytes": 1211185,
+      "sha256": "baf7dae963acb91b4702608c5fc5e7f693082fe2b3309cf475347e18e91a0978",
+      "success": true,
+      "error": null
+    },
+    {
+      "group": "subpart_e_s_bb_cc_ll",
+      "name": "e_s_cems_bb_cc_ll_full_data_set.xlsx",
+      "source_url": "https://www.epa.gov/system/files/other-files/2024-10/e_s_cems_bb_cc_ll_full_data_set.xlsx",
+      "description": "Adipic Acid (E), Lime Manufacturing CEMS (S), Silicon Carbide (BB), Soda Ash (CC), Coal-based Liquid Fuel Suppliers (LL) -- all reporting years from 2010.",
+      "retrieved_at_utc": "2026-07-13T16:21:42.625863+00:00",
+      "http_status": 200,
+      "bytes": 57576,
+      "sha256": "845c0a8f65e300d8b9d344dfc3da828cc2b46aca35a4c981368f666cbf7cbcf4",
+      "success": true,
+      "error": null
+    },
+    {
+      "group": "subpart_i",
+      "name": "i_freq_request_data.xlsx",
+      "source_url": "https://www.epa.gov/system/files/other-files/2024-10/i_freq_request_data.xlsx",
+      "description": "Subpart I, Electronics Manufacturing, all reporting years from 2011.",
+      "retrieved_at_utc": "2026-07-13T16:21:42.967563+00:00",
+      "http_status": 200,
+      "bytes": 1396778,
+      "sha256": "1c339b439e179f21c966321df6ae035530450d87bbe981106993ce17ce1ab2cb",
+      "success": true,
+      "error": null
+    }
+  ]
+}
