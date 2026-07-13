@@ -253,6 +253,45 @@ def fetch_envirofacts_table(table_name, dest_path, manifest_entry, page_size=100
         print(f"       -> Table name may be wrong. Verify at https://www.epa.gov/enviro")
 
 
+def check_for_newer_reporting_year():
+    """
+    As of this script's last update, EPA's data-sets page still lists
+    reporting year 2023 as the most recent "Data Summary Spreadsheets"
+    download -- RY2024 data was expected in Fall 2025 but hadn't appeared
+    as of February 2026. This check scans EPA's data-sets page each run
+    for a newer year's summary zip (e.g. "2024_data_summary_spreadsheets.zip")
+    and prints a clear notice if one has shown up, so a newer file doesn't
+    sit unnoticed just because it's not yet in STATIC_FILES above.
+
+    This is a heads-up, not a hard failure -- network issues or a page
+    redesign could also cause a false "nothing newer found" result, so
+    don't treat silence here as a guarantee nothing changed.
+    """
+    page_url = "https://www.epa.gov/ghgreporting/data-sets"
+    try:
+        req = urllib.request.Request(page_url, headers={"User-Agent": USER_AGENT})
+        with urllib.request.urlopen(req, timeout=REQUEST_TIMEOUT) as resp:
+            html = resp.read().decode("utf-8", errors="replace")
+    except Exception as e:  # noqa: BLE001
+        print(f"[reporting-year check] Could not check EPA's data-sets page: {e}")
+        return
+
+    import re
+    years_found = sorted(set(int(y) for y in re.findall(r"(\d{4})_data_summary_spreadsheets\.zip", html)))
+    known_year = 2023  # the year covered by STATIC_FILES["summary"] as of this script version
+
+    if not years_found:
+        print("[reporting-year check] Couldn't find any summary-spreadsheet year on EPA's page -- "
+              "page structure may have changed. Worth checking manually.")
+    elif max(years_found) > known_year:
+        print(f"[reporting-year check] NEW DATA AVAILABLE: EPA's page now lists reporting year "
+              f"{max(years_found)} (this script currently only pulls {known_year}). "
+              f"Update the 'summary' entry in STATIC_FILES with the new URL.")
+    else:
+        print(f"[reporting-year check] No newer reporting year found (still {known_year} as of this run -- "
+              f"RY2024 data, normally published each Fall, remains absent as of this check).")
+
+
 def main():
     parser = argparse.ArgumentParser(description="Archive EPA GHGRP data with checksums and provenance.")
     parser.add_argument("--only", help="Only download this group (see keys in STATIC_FILES).")
@@ -271,6 +310,10 @@ def main():
     if args.only and args.only not in STATIC_FILES:
         print(f"Unknown group '{args.only}'. Available: {', '.join(STATIC_FILES.keys())}")
         sys.exit(1)
+
+    if not args.list:
+        check_for_newer_reporting_year()
+        print()
 
     manifest = []
 

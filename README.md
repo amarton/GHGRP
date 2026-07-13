@@ -69,6 +69,22 @@ schema and can be renamed without notice, unlike the stable, documented
 bulk-file URLs above. Treat `--envirofacts` as an experimental add-on until
 someone verifies the table names once against the API Viewer.
 
+## A note on data currency
+
+As of this writing, EPA's own data-sets page still lists reporting year
+2023 as the most recent "Data Summary Spreadsheets" download — RY2024 data
+was expected each Fall (2025) per EPA's own rulemaking documentation, but
+hadn't appeared as of a February 2026 page check. Every real run of the
+script (not `--list`) automatically checks EPA's page for a newer
+reporting year and prints a notice if one's shown up, so this doesn't
+silently go stale. If you see a "NEW DATA AVAILABLE" notice in a run's
+output, update the `summary` entry's URL in `STATIC_FILES` accordingly.
+
+Worth treating the RY2024 delay itself as a possible story thread — a full
+reporting year running significantly behind schedule, on top of the
+proposed rule to end mandatory reporting altogether, is worth asking EPA's
+press office about directly.
+
 ## Automated monthly runs
 
 `.github/workflows/monthly-archive.yml` runs the script automatically on
