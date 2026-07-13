@@ -1,0 +1,52 @@
+name: Monthly GHGRP archive run
+
+# Runs automatically on the 1st of every month, and can also be triggered
+# manually from the Actions tab (useful right after EPA publishes new
+# reporting-year data each October, or right after any rule change).
+on:
+  schedule:
+    - cron: "0 6 1 * *"   # 06:00 UTC on the 1st of each month
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  archive:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Run archive script
+        run: python archive_ghgrp.py
+
+      - name: Commit and push new archive run
+        run: |
+          git config user.name "ghgrp-archive-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add archive/
+          if git diff --cached --quiet; then
+            echo "No changes to commit (this month's data matches last capture, or run failed)."
+          else
+            git commit -m "Automated GHGRP archive run: $(date -u +%Y-%m-%d)"
+            git push
+          fi
+
+  # Uncomment and configure this job if/when you confirm the Envirofacts
+  # table names and want to include granular API pulls in the automated run:
+  #
+  # archive-envirofacts:
+  #   runs-on: ubuntu-latest
+  #   needs: archive
+  #   steps:
+  #     - uses: actions/checkout@v4
+  #     - uses: actions/setup-python@v5
+  #       with:
+  #         python-version: "3.11"
+  #     - run: python archive_ghgrp.py --envirofacts --only never_downloads_static_only

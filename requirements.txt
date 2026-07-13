@@ -1,0 +1,7 @@
+# archive_ghgrp.py currently uses only the Python standard library
+# (urllib, hashlib, csv, json, argparse) so there's nothing to install
+# for the core script to run on Python 3.8+.
+#
+# Kept as a placeholder for likely future additions, e.g.:
+# openpyxl        # if you want to parse/re-validate the .xlsx files after download
+# pandas          # for downstream analysis of the archived data
