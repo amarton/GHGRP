@@ -1,0 +1,18 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+
+# Note: the archive/ directory is intentionally NOT ignored -- the
+# downloaded data and manifests are the actual point of this repo and
+# should be committed. If file sizes get large, consider Git LFS for
+# the raw/ subfolders instead of ignoring them entirely.
